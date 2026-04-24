@@ -1,0 +1,12 @@
+:root {
+    --primary: #f03b3b;
+    --primary-hover: #c42b2b;
+    --secondary: #4ECDC4;
+    --dark: #292f36;
+    --light: #f7fff7;
+    --gray: #e9ecef;
+    --text-color: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --font-family: 'Outfit', sans-serif;
+}
