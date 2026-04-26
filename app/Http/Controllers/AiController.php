@@ -33,7 +33,7 @@ class AiController extends Controller
                 \"servings\": 4,
                 \"calories\": 350
             },
-            \"image\": \"\",
+            \"image\": \"A relevant high-quality food image URL\",
             \"ingredients\": [
                 {
                     \"name\": \"Ingredient Name\",
@@ -78,7 +78,7 @@ class AiController extends Controller
             \"id\": \"surprise_rand\",
             \"title\": \"Title\",
             \"category\": \"Dinner\",
-            \"image\": \"\",
+            \"image\": \"A relevant high-quality food image URL\",
             \"meta\": {\"time\": 30, \"servings\": 2, \"calories\": 400},
             \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\"}],
             \"instructions\": [\"Step 1\"]
