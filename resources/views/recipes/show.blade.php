@@ -117,7 +117,9 @@
                 @foreach($recipe->ingredients as $ingredient)
                 <div class="ingredient-card">
                     <div class="ingredient-img-container">
-                        <img src="{{ $ingredient->image_path ? asset($ingredient->image_path) : 'https://loremflickr.com/300/300/food,'.urlencode($ingredient->name) }}" alt="{{ $ingredient->name }}" class="ingredient-img">
+                        <img src="{{ $ingredient->image_path ? asset($ingredient->image_path) : 'https://www.themealdb.com/images/ingredients/'.urlencode(ucwords(strtolower($ingredient->name))).'.png' }}" 
+                             onerror="this.src='https://loremflickr.com/300/300/food,'.urlencode($ingredient->name)"
+                             alt="{{ $ingredient->name }}" class="ingredient-img">
                     </div>
                     <div class="ingredient-info">
                         <span class="ingredient-name">{{ $ingredient->name }}</span>
