@@ -11,7 +11,26 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $recipes = Recipe::with('user', 'category')->withCount('viewers')->latest()->take(6)->get();
+        
+        // The user wants specific "static" featured recipes like Tanjia to appear first.
+        $featuredTitles = ['Tanjia', 'Royal Couscous', 'Tagine', 'Pastilla', 'Harira', 'Mint Tea'];
+        
+        $recipes = Recipe::with('user', 'category')
+            ->withCount('viewers')
+            ->whereIn('title', $featuredTitles)
+            ->get();
+            
+        // If we don't have 6 featured recipes, pad with the newest ones
+        if ($recipes->count() < 6) {
+            $excludeIds = $recipes->pluck('id')->toArray();
+            $moreRecipes = Recipe::with('user', 'category')
+                ->withCount('viewers')
+                ->whereNotIn('id', $excludeIds)
+                ->latest()
+                ->take(6 - $recipes->count())
+                ->get();
+            $recipes = $recipes->merge($moreRecipes);
+        }
     
         return view('home', compact('categories', 'recipes'));
     }
