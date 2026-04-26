@@ -63,7 +63,9 @@
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-ghost">Se connecter</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary">S'inscrire</a>
+                    <button id="surprise-btn" class="btn btn-warning btn-lg">
+                Surprise recipe
+            </button>
                 @endauth
             </div>
         </div>
@@ -103,172 +105,104 @@
                 <div class="form-group">
                     <label class="form-label">Recipe Image</label>
                     
-                    <div class="image-selector-container">
-                        <div class="image-tabs">
-                            <button type="button" class="image-tab active" data-target="upload-tab">
-                                <i class="fas fa-camera"></i> Upload / Camera
-                            </button>
-                            <button type="button" class="image-tab" data-target="link-tab">
-                                <i class="fas fa-link"></i> AI / Web Link
-                            </button>
-                        </div>
-
-                        <div class="image-tab-content active" id="upload-tab">
+                    <div class="image-options-grid">
+                        <!-- Option 1: File Upload -->
+                        <div class="image-option-card">
+                            <div class="option-header">
+                                <i class="fas fa-camera"></i>
+                                <span>Upload Photo / Take Picture</span>
+                            </div>
                             <div class="file-upload-wrapper">
                                 <input type="file" name="image_file" id="image-file-input" class="file-upload-input" accept="image/*" capture="environment">
                                 <div class="file-upload-design">
                                     <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>Click to upload or take a photo</p>
+                                    <p>Select File</p>
                                     <span id="file-name-display" class="file-name-hint">No file chosen</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="image-tab-content" id="link-tab">
+                        <!-- Option 2: AI / Web Link -->
+                        <div class="image-option-card">
+                            <div class="option-header">
+                                <i class="fas fa-link"></i>
+                                <span>AI Generated / External Link</span>
+                            </div>
                             <div class="input-with-icon">
                                 <i class="fas fa-magic"></i>
                                 <input type="text" id="recipe-image" name="image_path" class="form-input" 
-                                    placeholder="https://example.com/image.jpg (or let AI fill this)">
+                                    placeholder="Paste image URL here...">
                             </div>
-                            <p class="input-hint">The AI assistant will automatically populate this if you use "AI Suggestions".</p>
+                            <p class="input-hint">This will be automatically filled if you click "AI Suggestions" above.</p>
                         </div>
                     </div>
                 </div>
 
                 <style>
-                    .image-selector-container {
+                    .image-options-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 20px;
                         background: rgba(255, 255, 255, 0.05);
                         border-radius: 15px;
-                        padding: 20px;
+                        padding: 15px;
                         border: 1px solid rgba(0,0,0,0.1);
-                        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
                     }
-                    .image-tabs {
-                        display: flex;
-                        gap: 10px;
-                        margin-bottom: 20px;
-                        border-bottom: 2px solid rgba(0,0,0,0.05);
-                        padding-bottom: 10px;
+                    @media (max-width: 768px) {
+                        .image-options-grid { grid-template-columns: 1fr; }
                     }
-                    .image-tab {
-                        background: none;
-                        border: none;
-                        padding: 8px 16px;
-                        font-weight: 600;
-                        color: #666;
-                        cursor: pointer;
-                        border-radius: 8px;
-                        transition: all 0.3s ease;
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    }
-                    .image-tab.active {
-                        background: var(--primary-color);
-                        color: white;
-                        box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
-                    }
-                    .image-tab-content {
-                        display: none;
-                        animation: fadeIn 0.4s ease;
-                    }
-                    .image-tab-content.active {
-                        display: block;
-                    }
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(5px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-
-                    /* File Upload Design */
-                    .file-upload-wrapper {
-                        position: relative;
-                        width: 100%;
-                        height: 120px;
-                    }
-                    .file-upload-input {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        opacity: 0;
-                        cursor: pointer;
-                        z-index: 2;
-                    }
-                    .file-upload-design {
-                        position: absolute;
-                        top: 0; left: 0; width: 100%; height: 100%;
-                        border: 2px dashed #ddd;
+                    .image-option-card {
+                        background: white;
+                        padding: 15px;
                         border-radius: 12px;
+                        border: 1px solid #eee;
                         display: flex;
                         flex-direction: column;
+                        gap: 12px;
+                    }
+                    .option-header {
+                        display: flex;
                         align-items: center;
-                        justify-content: center;
                         gap: 10px;
-                        background: white;
-                        transition: all 0.3s ease;
+                        font-weight: 600;
+                        color: #333;
+                        font-size: 0.95rem;
                     }
-                    .file-upload-wrapper:hover .file-upload-design {
-                        border-color: var(--primary-color);
-                        background: rgba(var(--primary-rgb), 0.02);
+                    .option-header i { color: var(--primary-color); }
+                    
+                    /* File Upload Design */
+                    .file-upload-wrapper { position: relative; width: 100%; height: 80px; }
+                    .file-upload-input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 2; }
+                    .file-upload-design {
+                        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                        border: 2px dashed #ddd; border-radius: 10px;
+                        display: flex; align-items: center; justify-content: center; gap: 10px;
+                        background: #f9f9f9; transition: all 0.3s ease;
                     }
-                    .file-upload-design i {
-                        font-size: 2rem;
-                        color: var(--primary-color);
-                    }
-                    .file-name-hint {
-                        font-size: 0.85rem;
-                        color: #888;
-                    }
+                    .file-upload-wrapper:hover .file-upload-design { border-color: var(--primary-color); }
+                    .file-name-hint { font-size: 0.8rem; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; }
 
                     /* Link Input */
-                    .input-with-icon {
-                        position: relative;
-                    }
-                    .input-with-icon i {
-                        position: absolute;
-                        left: 15px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        color: var(--primary-color);
-                    }
-                    .input-with-icon .form-input {
-                        padding-left: 45px;
-                    }
-                    .input-hint {
-                        font-size: 0.8rem;
-                        color: #888;
-                        margin-top: 8px;
-                        font-style: italic;
-                    }
+                    .input-with-icon { position: relative; }
+                    .input-with-icon i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--primary-color); }
+                    .input-with-icon .form-input { padding-left: 35px; height: 45px; }
+                    .input-hint { font-size: 0.75rem; color: #888; margin-top: 0; font-style: italic; }
                 </style>
 
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
-                        const tabs = document.querySelectorAll('.image-tab');
-                        const contents = document.querySelectorAll('.image-tab-content');
                         const fileInput = document.getElementById('image-file-input');
                         const fileNameDisplay = document.getElementById('file-name-display');
-
-                        tabs.forEach(tab => {
-                            tab.addEventListener('click', () => {
-                                tabs.forEach(t => t.classList.remove('active'));
-                                contents.forEach(c => c.classList.remove('active'));
-                                
-                                tab.classList.add('active');
-                                document.getElementById(tab.dataset.target).classList.add('active');
+                        if (fileInput) {
+                            fileInput.addEventListener('change', (e) => {
+                                if (e.target.files.length > 0) {
+                                    fileNameDisplay.textContent = e.target.files[0].name;
+                                    fileNameDisplay.style.color = 'var(--primary-color)';
+                                }
                             });
-                        });
-
-                        fileInput.addEventListener('change', (e) => {
-                            if (e.target.files.length > 0) {
-                                fileNameDisplay.textContent = e.target.files[0].name;
-                                fileNameDisplay.style.color = 'var(--primary-color)';
-                                fileNameDisplay.style.fontWeight = 'bold';
-                            }
-                        });
+                        }
                     });
                 </script>
-
 
                 <div class="form-row form-group">
                     <div>

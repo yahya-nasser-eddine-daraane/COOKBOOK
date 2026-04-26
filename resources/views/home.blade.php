@@ -73,9 +73,9 @@
         <div class="hero-content">
             <h1 class="hero-title">You don't know what to cook today?</h1>
             <p class="hero-subtitle">Let Chef YAHYA_AI surprise you or browse vibrant categories below.</p>
-            <a href="{{ route('recipes.surprise') }}" class="btn btn-warning btn-lg">
+            <button id="surprise-btn" class="btn btn-warning btn-lg">
                 Surprise recipe
-            </a>
+            </button>
         </div>
     </div>
 
