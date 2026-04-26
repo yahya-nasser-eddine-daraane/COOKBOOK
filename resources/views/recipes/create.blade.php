@@ -126,7 +126,7 @@
                         <div class="image-option-card">
                             <div class="option-header">
                                 <i class="fas fa-link"></i>
-                                <span>AI Generated / External Link</span>
+                                <span>Link</span>
                             </div>
                             <div class="input-with-icon">
                                 <i class="fas fa-magic"></i>
@@ -247,9 +247,7 @@
         </div>
     </main>
 
-    <script>
-        const SERVER_INGREDIENTS = @json($ingredients);
-    </script>
+
 
     <footer class="footer">
         <div class="container footer-container">

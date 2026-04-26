@@ -2,27 +2,16 @@ function createIngredientInput() {
     const div = document.createElement('div');
     div.className = 'dynamic-item';
 
-    let optionsHTML = '<option value=""> Select Ingredient </option>';
-    const ingredients = (typeof SERVER_INGREDIENTS !== 'undefined') ? SERVER_INGREDIENTS : [];
-
-    ingredients.forEach(ing => {
-        optionsHTML += `<option value="${ing.id}" data-image="${ing.image_path || ''}">${ing.name}</option>`;
-    });
-
     div.innerHTML = `
-        <select name="ingredients[]" class="form-input ingredient-select" required onchange="selectIngredient(this)">
-            ${optionsHTML}
-        </select> 
-        <input type="text" name="quantities[]" placeholder="Amount (ex:, 500g)" class="form-input ingredient-amount" required>
-        <input type="hidden" class="ingredient-img">
+        <input type="text" name="ingredient_names[]" placeholder="Ingredient name (ex: Flour)" class="form-input ingredient-name" required>
+        <input type="text" name="quantities[]" placeholder="Amount (ex: 500g)" class="form-input ingredient-amount" required>
         <button type="button" class="btn-remove" onclick="this.parentElement.remove()">X</button>
     `;
     return div;
 }
 
 function selectIngredient(select) {
-    const selectedOption = select.options[select.selectedIndex];
-    const imageUrl = selectedOption.getAttribute('data-image');
+    // No longer used with text inputs
 }
 
 function createInstructionInput() {
@@ -51,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         instructionsList.appendChild(createInstructionInput());
     });
 
-    // AI Suggestion Logic (Preserved but slightly adapted)
+    // AI Suggestion Logic
     const aiSuggestBtn = document.getElementById('ai-suggest-btn');
     if (aiSuggestBtn) {
         aiSuggestBtn.addEventListener('click', async () => {
@@ -73,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('recipe-servings').value = generatedRecipe.meta.servings;
                 document.getElementById('recipe-calories').value = generatedRecipe.meta.calories;
 
-                // Image handling: generatedRecipe.image is a URL
                 const imgInput = document.getElementById('recipe-image');
                 if (!imgInput.value && generatedRecipe.image) {
                     imgInput.value = generatedRecipe.image;
@@ -84,24 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 ingredientsList.innerHTML = '';
                 generatedRecipe.ingredients.forEach(ing => {
                     const row = createIngredientInput();
-                    const select = row.querySelector('.ingredient-select');
-                    const amount = row.querySelector('.ingredient-amount');
-
-                    let found = false;
-                    for (let i = 0; i < select.options.length; i++) {
-                        // Match by text name
-                        if (select.options[i].text.toLowerCase() === ing.name.toLowerCase()) {
-                            select.selectedIndex = i;
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found) {
-                        console.warn('Ingredient not found in DB:', ing.name);
-                    }
-
-                    amount.value = ing.amount;
+                    row.querySelector('.ingredient-name').value = ing.name;
+                    row.querySelector('.ingredient-amount').value = ing.amount;
                     ingredientsList.appendChild(row);
                 });
 

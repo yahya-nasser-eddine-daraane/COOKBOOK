@@ -71,14 +71,17 @@ class RecipeController extends Controller
         
         $recipe->save();
 
-        if ($request->has('ingredients')) {
+        if ($request->has('ingredient_names')) {
             $ingredientsData = [];
-            foreach ($request->ingredients as $index => $ingredientId) {
+            foreach ($request->ingredient_names as $index => $name) {
+                if (empty($name)) continue;
+                
+                $ingredient = \App\Models\Ingredient::firstOrCreate(
+                    ['name' => trim($name)]
+                );
+                
                 $quantity = $request->quantities[$index] ?? '0';
-                if ($quantity === null || $quantity === '') {
-                   $quantity = '0';
-                }
-                $ingredientsData[$ingredientId] = ['quantity' => $quantity];
+                $ingredientsData[$ingredient->id] = ['quantity' => $quantity];
             }
             $recipe->ingredients()->sync($ingredientsData);
         }
@@ -119,12 +122,11 @@ class RecipeController extends Controller
             'prep_time' => 'required|integer|min:1',
             'category_id' => 'required|exists:categories,id',
             'image_path' => 'nullable|string',
-            'ingredients' => 'array',
-            'ingredients.*' => 'exists:ingredients,id',
+            'ingredient_names' => 'array',
             'quantities' => 'array',
         ]);
 
-        $recipe->fill($request->except(['ingredients', 'quantities', 'image_file']));
+        $recipe->fill($request->except(['ingredients', 'quantities', 'image_file', 'ingredient_names']));
 
         if ($request->hasFile('image_file')) {
             $file = $request->file('image_file');
@@ -135,11 +137,17 @@ class RecipeController extends Controller
 
         $recipe->save();
 
-        if ($request->has('ingredients')) {
+        if ($request->has('ingredient_names')) {
             $ingredientsData = [];
-            foreach ($request->ingredients as $index => $ingredientId) {
-                $quantity = $request->quantities[$index]; 
-                $ingredientsData[$ingredientId] = ['quantity' => $quantity];
+            foreach ($request->ingredient_names as $index => $name) {
+                if (empty($name)) continue;
+
+                $ingredient = \App\Models\Ingredient::firstOrCreate(
+                    ['name' => trim($name)]
+                );
+
+                $quantity = $request->quantities[$index] ?? '0';
+                $ingredientsData[$ingredient->id] = ['quantity' => $quantity];
             }
             $recipe->ingredients()->sync($ingredientsData);
         } else {
