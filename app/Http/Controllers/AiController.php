@@ -41,12 +41,12 @@ class AiController extends Controller
                 }
             ],
             \"instructions\": [
-                \"Short, distinct step 1 description.\",
-                \"Short, distinct step 2 description.\",
-                \"Short, distinct step 3 description.\"
+                \"Rinse the quinoa.\",
+                \"Cook the quinoa in water for 15 minutes.\",
+                \"Fluff the quinoa and let it cool.\"
             ]
         }
-        IMPORTANT: Break down the instructions into MANY small, individual steps. Each step MUST be a separate string in the 'instructions' array. Avoid long paragraphs. Do not include step numbers.\";
+        IMPORTANT: Break down the instructions into MANY small steps. Each string in the 'instructions' array MUST contain ONLY ONE single action. Never combine multiple tasks (like 'cook and cool') into one step.\";
 
         try {
             $response = Http::withToken($this->apiKey)
@@ -83,9 +83,9 @@ class AiController extends Controller
             \"image\": \"A relevant high-quality food image URL\",
             \"meta\": {\"time\": 30, \"servings\": 2, \"calories\": 400},
             \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\"}],
-            \"instructions\": [\"Short step 1\", \"Short step 2\"]
+            \"instructions\": [\"Action 1\", \"Action 2\"]
         }
-        IMPORTANT: Break down the instructions into MANY small, individual steps. Each step MUST be a separate string in the 'instructions' array. Do not include step numbers.\";
+        IMPORTANT: Each step MUST contain ONLY ONE single action. Break down the recipe into as many steps as possible.\";
 
         try {
             $response = Http::withToken($this->apiKey)
