@@ -126,12 +126,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveAndRedirect(recipe) {
-        // Now that the AI controller saves directly to the DB,
-        // we just need to redirect to the new recipe page.
         if (recipe && recipe.id) {
             window.location.href = `/recipes/${recipe.id}`;
         } else {
             alert('Failed to create surprise recipe.');
+            const btn = document.getElementById('surprise-btn');
+            if (btn) {
+                btn.textContent = 'Surprise recipe';
+                btn.disabled = false;
+            }
         }
     }
 });
