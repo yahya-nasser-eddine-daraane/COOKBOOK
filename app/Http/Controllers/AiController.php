@@ -10,7 +10,7 @@ class AiController extends Controller
 {
     private $apiKey;
     private $baseUrl = 'https://api.groq.com/openai/v1/chat/completions';
-    private $model = 'llama3-8b-8192';
+    private $model = 'llama-3.1-8b-instant';
 
     public function __construct()
     {
