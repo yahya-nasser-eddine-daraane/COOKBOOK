@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? asset($recipe->image_path) : '' }}'); background-size: cover; background-position: center;">
+    <header class="recipe-hero" id="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : 'https://loremflickr.com/1200/600/food,recipe,'.urlencode($recipe->title) }}'); background-size: cover; background-position: center;">
         <div class="container recipe-hero-content">
             <h1 class="recipe-title">{{ $recipe->title }}</h1>
             <div class="recipe-meta">
@@ -117,7 +117,7 @@
                 @foreach($recipe->ingredients as $ingredient)
                 <div class="ingredient-card">
                     <div class="ingredient-img-container">
-                        <img src="{{ $ingredient->image_path ? asset($ingredient->image_path) : 'https://www.themealdb.com/images/ingredients/'.urlencode(ucwords(strtolower($ingredient->name))).'.png' }}" 
+                        <img src="{{ $ingredient->image_path ? (Str::startsWith($ingredient->image_path, ['http://', 'https://']) ? $ingredient->image_path : asset($ingredient->image_path)) : 'https://img.spoonacular.com/ingredients_100x100/'.urlencode(strtolower(str_replace(' ', '-', $ingredient->name))).'.jpg' }}" 
                              onerror="this.src='https://loremflickr.com/300/300/food,'.urlencode($ingredient->name)"
                              alt="{{ $ingredient->name }}" class="ingredient-img">
                     </div>
@@ -205,7 +205,6 @@
             }
         });
     </script>
-    <script src="{{ asset('js/ingredients-db.js') }}"></script>
     <script src="{{ asset('js/ai-assistant.js') }}"></script>
     <script src="{{ asset('js/recipe.js') }}"></script>
 </body>

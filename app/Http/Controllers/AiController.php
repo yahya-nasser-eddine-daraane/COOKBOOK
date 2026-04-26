@@ -110,7 +110,10 @@ class AiController extends Controller
                 
                 // --- Save logic ---
                 $categoryName = $recipeData['category'] ?? 'Healthy';
-                $category = Category::where('name', 'like', "%{$categoryName}%")->first() ?? Category::first();
+                $category = Category::where('name', 'like', "%{$categoryName}%")->first();
+                if (!$category) {
+                    $category = Category::inRandomOrder()->first() ?? Category::first();
+                }
                 
                 $recipe = new Recipe();
                 $recipe->title = $recipeData['title'];
