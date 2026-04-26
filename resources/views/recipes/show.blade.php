@@ -118,7 +118,7 @@
                 <div class="ingredient-card">
                     <div class="ingredient-img-container">
                         <img src="{{ $ingredient->image_path ? (Str::startsWith($ingredient->image_path, ['http://', 'https://']) ? $ingredient->image_path : asset($ingredient->image_path)) : 'https://img.spoonacular.com/ingredients_100x100/'.urlencode(strtolower(str_replace(' ', '-', $ingredient->name))).'.jpg' }}" 
-                             onerror="this.src='https://loremflickr.com/300/300/food,'.urlencode($ingredient->name)"
+                             onerror="this.onerror=null; this.src='https://loremflickr.com/300/300/food,{{ urlencode($ingredient->name) }}'"
                              alt="{{ $ingredient->name }}" class="ingredient-img">
                     </div>
                     <div class="ingredient-info">
