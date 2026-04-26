@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Recipe;
+use App\Models\Category;
+use App\Models\Ingredient;
 
 class AiController extends Controller
 {
@@ -85,7 +89,7 @@ class AiController extends Controller
             \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\"}],
             \"instructions\": [\"Action 1\", \"Action 2\"]
         }
-        IMPORTANT: Each step MUST contain ONLY ONE single action. Break down the recipe into as many steps as possible.";
+        IMPORTANT: Provide a COMPLETE recipe. Do not stop at 5 steps. If the recipe needs 10, 15, or 20 steps to be clear, provide ALL of them. Each string in the 'instructions' array MUST contain ONLY ONE single action.";
 
         try {
             $response = Http::withToken($this->apiKey)
@@ -102,11 +106,41 @@ class AiController extends Controller
 
             if ($response->successful()) {
                 $recipeData = json_decode($response->json('choices.0.message.content'), true);
-                $recipeData['id'] = 'surprise_' . uniqid();
-                return response()->json($recipeData);
+                
+                // --- Save logic ---
+                $categoryName = $recipeData['category'] ?? 'Healthy';
+                $category = Category::where('name', 'like', "%{$categoryName}%")->first() ?? Category::first();
+                
+                $recipe = new Recipe();
+                $recipe->title = $recipeData['title'];
+                $recipe->description = "An AI generated surprise recipe! Enjoy this creative " . ($recipeData['category'] ?? 'dish') . ".";
+                $recipe->instructions = implode("\n", $recipeData['instructions']);
+                $recipe->prep_time = $recipeData['meta']['time'] ?? 30;
+                $recipe->servings = $recipeData['meta']['servings'] ?? 2;
+                $recipe->calories = $recipeData['meta']['calories'] ?? 400;
+                $recipe->image_path = $recipeData['image'];
+                $recipe->category_id = $category->id;
+                $recipe->user_id = Auth::id() ?? \App\Models\User::first()->id;
+                $recipe->save();
+
+                // Save Ingredients
+                if (!empty($recipeData['ingredients'])) {
+                    $syncData = [];
+                    foreach ($recipeData['ingredients'] as $ing) {
+                        $dbIng = Ingredient::where('name', 'like', "%{$ing['name']}%")->first();
+                        if (!$dbIng) {
+                            $dbIng = Ingredient::create(['name' => $ing['name']]);
+                        }
+                        $syncData[$dbIng->id] = ['quantity' => $ing['amount']];
+                    }
+                    $recipe->ingredients()->sync($syncData);
+                }
+
+                return response()->json(['id' => $recipe->id]);
             }
             return response()->json(['error' => 'AI failed.'], 500);
         } catch (\Exception $e) {
+            Log::error('Surprise Recipe Error: ' . $e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

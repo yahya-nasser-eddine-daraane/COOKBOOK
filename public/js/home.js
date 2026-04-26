@@ -126,16 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveAndRedirect(recipe) {
-        const currentRecipes = JSON.parse(localStorage.getItem('myRecipes') || '[]');
-
-        const idx = currentRecipes.findIndex(r => r.id === recipe.id);
-        if (idx >= 0) {
-            currentRecipes[idx] = recipe;
+        // Now that the AI controller saves directly to the DB,
+        // we just need to redirect to the new recipe page.
+        if (recipe && recipe.id) {
+            window.location.href = `/recipes/${recipe.id}`;
         } else {
-            currentRecipes.push(recipe);
+            alert('Failed to create surprise recipe.');
         }
-
-        localStorage.setItem('myRecipes', JSON.stringify(currentRecipes));
-        window.location.href = `/recipes/${recipe.id}`;
     }
 });
