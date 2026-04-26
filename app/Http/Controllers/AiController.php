@@ -85,9 +85,9 @@ class AiController extends Controller
             \"id\": \"surprise_rand\",
             \"title\": \"Title\",
             \"category\": \"Dinner\",
-            \"image\": \"A relevant high-quality food image URL\",
+            \"image\": \"A high-quality Unsplash URL for this specific dish\",
             \"meta\": {\"time\": 30, \"servings\": 2, \"calories\": 400},
-            \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\"}],
+            \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\", \"image\": \"A high-quality Unsplash URL for this specific ingredient\"}],
             \"instructions\": [\"Action 1\", \"Action 2\"]
         }
         IMPORTANT: Provide a COMPLETE recipe. Do not stop at 5 steps. If the recipe needs 10, 15, or 20 steps to be clear, provide ALL of them. Each string in the 'instructions' array MUST contain ONLY ONE single action.";
@@ -133,7 +133,13 @@ class AiController extends Controller
                     foreach ($recipeData['ingredients'] as $ing) {
                         $dbIng = Ingredient::where('name', 'like', "%{$ing['name']}%")->first();
                         if (!$dbIng) {
-                            $dbIng = Ingredient::create(['name' => $ing['name']]);
+                            $dbIng = Ingredient::create([
+                                'name' => $ing['name'],
+                                'image_path' => $ing['image'] ?? null
+                            ]);
+                        } else if (!empty($ing['image'])) {
+                            $dbIng->image_path = $ing['image'];
+                            $dbIng->save();
                         }
                         $syncData[$dbIng->id] = ['quantity' => $ing['amount']];
                     }

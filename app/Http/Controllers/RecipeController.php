@@ -79,6 +79,12 @@ class RecipeController extends Controller
                 $ingredient = \App\Models\Ingredient::firstOrCreate(
                     ['name' => trim($name)]
                 );
+
+                // Update ingredient image if provided
+                if (!empty($request->ingredient_links[$index])) {
+                    $ingredient->image_path = $request->ingredient_links[$index];
+                    $ingredient->save();
+                }
                 
                 $quantity = $request->quantities[$index] ?? '0';
                 $ingredientsData[$ingredient->id] = ['quantity' => $quantity];
@@ -145,6 +151,12 @@ class RecipeController extends Controller
                 $ingredient = \App\Models\Ingredient::firstOrCreate(
                     ['name' => trim($name)]
                 );
+
+                // Update ingredient image if provided
+                if (!empty($request->ingredient_links[$index])) {
+                    $ingredient->image_path = $request->ingredient_links[$index];
+                    $ingredient->save();
+                }
 
                 $quantity = $request->quantities[$index] ?? '0';
                 $ingredientsData[$ingredient->id] = ['quantity' => $quantity];

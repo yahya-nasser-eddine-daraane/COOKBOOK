@@ -3,9 +3,15 @@ function createIngredientInput() {
     div.className = 'dynamic-item';
 
     div.innerHTML = `
-        <input type="text" name="ingredient_names[]" placeholder="Ingredient name (ex: Flour)" class="form-input ingredient-name" required>
-        <input type="text" name="quantities[]" placeholder="Amount (ex: 500g)" class="form-input ingredient-amount" required>
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">X</button>
+        <div class="ingredient-row-main">
+            <input type="text" name="ingredient_names[]" placeholder="Ingredient name (ex: Flour)" class="form-input ingredient-name" required>
+            <input type="text" name="quantities[]" placeholder="Amount (ex: 500g)" class="form-input ingredient-amount" required>
+            <button type="button" class="btn-remove" onclick="this.parentElement.remove()">X</button>
+        </div>
+        <div class="ingredient-row-image">
+            <i class="fas fa-image"></i>
+            <input type="text" name="ingredient_links[]" placeholder="Photo link (optional)" class="form-input ingredient-link">
+        </div>
     `;
     return div;
 }
@@ -74,6 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const row = createIngredientInput();
                     row.querySelector('.ingredient-name').value = ing.name;
                     row.querySelector('.ingredient-amount').value = ing.amount;
+                    
+                    // Add AI image if available or generate a high-quality food link
+                    const linkInput = row.querySelector('.ingredient-link');
+                    if (ing.image) {
+                        linkInput.value = ing.image;
+                    } else {
+                        linkInput.value = `https://loremflickr.com/300/300/food,${ing.name.replace(/ /g, ',')}`;
+                    }
+                    
                     ingredientsList.appendChild(row);
                 });
 

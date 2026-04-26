@@ -284,6 +284,43 @@
     <script src="{{ asset('js/ingredients-db.js') }}"></script>
     <script src="{{ asset('js/ai-assistant.js') }}"></script>
     <script src="{{ asset('js/add-recipe.js') }}"></script>
+    <style>
+        .dynamic-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #fdfdfd;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+        }
+        .ingredient-row-main {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .ingredient-row-image {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .ingredient-row-image i { color: var(--primary-color); opacity: 0.7; }
+        .ingredient-link {
+            flex: 1 !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 4px !important;
+            font-size: 0.85rem !important;
+            color: #666 !important;
+            box-shadow: none !important;
+        }
+        .ingredient-link:focus { color: #333 !important; outline: none !important; }
+    </style>
 </body>
 
 </html>
