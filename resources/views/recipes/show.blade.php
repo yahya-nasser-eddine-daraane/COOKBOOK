@@ -117,7 +117,7 @@
                 @foreach($recipe->ingredients as $ingredient)
                 <div class="ingredient-card">
                     <div class="ingredient-img-container">
-                        <img src="{{ $ingredient->image_path ? asset($ingredient->image_path) : 'https://via.placeholder.com/150?text='.urlencode($ingredient->name) }}" alt="{{ $ingredient->name }}" class="ingredient-img">
+                        <img src="{{ $ingredient->image_path ? asset($ingredient->image_path) : 'https://loremflickr.com/300/300/food,'.urlencode($ingredient->name) }}" alt="{{ $ingredient->name }}" class="ingredient-img">
                     </div>
                     <div class="ingredient-info">
                         <span class="ingredient-name">{{ $ingredient->name }}</span>

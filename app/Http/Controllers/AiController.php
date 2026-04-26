@@ -46,7 +46,7 @@ class AiController extends Controller
                 \"Fluff the quinoa and let it cool.\"
             ]
         }
-        IMPORTANT: Break down the instructions into MANY small steps. Each string in the 'instructions' array MUST contain ONLY ONE single action. Never combine multiple tasks (like 'cook and cool') into one step.\";
+        IMPORTANT: Provide a COMPLETE recipe. Do not stop at 5 steps. If the recipe needs 10, 15, or 20 steps to be clear, provide ALL of them. Each string in the 'instructions' array MUST contain ONLY ONE single action.\";
 
         try {
             $response = Http::withToken($this->apiKey)
