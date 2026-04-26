@@ -46,7 +46,7 @@ class AiController extends Controller
                 \"Fluff the quinoa and let it cool.\"
             ]
         }
-        IMPORTANT: Provide a COMPLETE recipe. Do not stop at 5 steps. If the recipe needs 10, 15, or 20 steps to be clear, provide ALL of them. Each string in the 'instructions' array MUST contain ONLY ONE single action.\";
+        IMPORTANT: Provide a COMPLETE recipe. Do not stop at 5 steps. If the recipe needs 10, 15, or 20 steps to be clear, provide ALL of them. Each string in the 'instructions' array MUST contain ONLY ONE single action.";
 
         try {
             $response = Http::withToken($this->apiKey)
@@ -85,7 +85,7 @@ class AiController extends Controller
             \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\"}],
             \"instructions\": [\"Action 1\", \"Action 2\"]
         }
-        IMPORTANT: Each step MUST contain ONLY ONE single action. Break down the recipe into as many steps as possible.\";
+        IMPORTANT: Each step MUST contain ONLY ONE single action. Break down the recipe into as many steps as possible.";
 
         try {
             $response = Http::withToken($this->apiKey)
