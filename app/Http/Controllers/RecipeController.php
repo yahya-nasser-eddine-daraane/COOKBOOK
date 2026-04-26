@@ -57,12 +57,15 @@ class RecipeController extends Controller
             'quantities' => 'array',
         ]);
 
-        $input = $request->except(['ingredients', 'quantities']);
+        $recipe = new Recipe($request->except(['ingredients', 'quantities', 'image_file']));
         
-        $input['description'] = $input['description'] ?? ''; 
+        if ($request->hasFile('image_file')) {
+            $file = $request->file('image_file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/recipes'), $filename);
+            $recipe->image_path = 'uploads/recipes/' . $filename;
+        }
 
-        $recipe = new Recipe($input);
-        
         $userId = Auth::id();
         $recipe->user_id = $userId;
         
@@ -121,7 +124,16 @@ class RecipeController extends Controller
             'quantities' => 'array',
         ]);
 
-        $recipe->update($request->except(['ingredients', 'quantities']));
+        $recipe->fill($request->except(['ingredients', 'quantities', 'image_file']));
+
+        if ($request->hasFile('image_file')) {
+            $file = $request->file('image_file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/recipes'), $filename);
+            $recipe->image_path = 'uploads/recipes/' . $filename;
+        }
+
+        $recipe->save();
 
         if ($request->has('ingredients')) {
             $ingredientsData = [];

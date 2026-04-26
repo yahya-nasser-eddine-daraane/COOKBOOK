@@ -73,7 +73,7 @@
         <div class="form-container">
             <h2 class="section-title text-center">Add New Recipe</h2>
 
-            <form id="add-recipe-form" method="POST" action="{{ route('recipes.store') }}">
+            <form id="add-recipe-form" method="POST" action="{{ route('recipes.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="form-label">Recipe Title</label>
@@ -100,11 +100,13 @@
                     <textarea name="description" class="form-input" rows="3" placeholder="Briefly describe your recipe..."></textarea>
                 </div>
 
-
-
                 <div class="form-group">
-                    <label class="form-label">Recipe Image URL (Optional)</label>
-                    <input type="url" id="recipe-image" name="image_path" class="form-input" placeholder="https://example.com/image.jpg">
+                    <label class="form-label">Recipe Image (Photo or AI Link)</label>
+                    <!-- File input for taking a photo or local memory -->
+                    <input type="file" name="image_file" class="form-input" accept="image/*" capture="environment">
+                    
+                    <!-- Hidden input for AI to put the link -->
+                    <input type="hidden" id="recipe-image" name="image_path">
                 </div>
 
 
