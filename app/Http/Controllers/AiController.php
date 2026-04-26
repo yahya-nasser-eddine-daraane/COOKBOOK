@@ -10,7 +10,7 @@ class AiController extends Controller
 {
     private $apiKey;
     private $baseUrl = 'https://api.groq.com/openai/v1/chat/completions';
-    private $model = 'llama-3.1-8b-instant';
+    private $model = 'llama-3.3-70b-versatile';
 
     public function __construct()
     {
@@ -41,10 +41,12 @@ class AiController extends Controller
                 }
             ],
             \"instructions\": [
-                \"Step 1 description.\",
-                \"Step 2 description.\"
+                \"Short, distinct step 1 description.\",
+                \"Short, distinct step 2 description.\",
+                \"Short, distinct step 3 description.\"
             ]
-        }";
+        }
+        IMPORTANT: Break down the instructions into MANY small, individual steps. Each step MUST be a separate string in the 'instructions' array. Avoid long paragraphs. Do not include step numbers.\";
 
         try {
             $response = Http::withToken($this->apiKey)
@@ -81,8 +83,9 @@ class AiController extends Controller
             \"image\": \"A relevant high-quality food image URL\",
             \"meta\": {\"time\": 30, \"servings\": 2, \"calories\": 400},
             \"ingredients\": [{\"name\": \"Ing\", \"amount\": \"Amt\"}],
-            \"instructions\": [\"Step 1\"]
-        }";
+            \"instructions\": [\"Short step 1\", \"Short step 2\"]
+        }
+        IMPORTANT: Break down the instructions into MANY small, individual steps. Each step MUST be a separate string in the 'instructions' array. Do not include step numbers.\";
 
         try {
             $response = Http::withToken($this->apiKey)
