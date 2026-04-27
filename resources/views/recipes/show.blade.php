@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="recipe-hero" id="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : 'https://placehold.co/1200x600/FFF3E0/E65100?text=Recipe' }}'); background-size: cover; background-position: center;">
+    <header class="recipe-hero" id="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : $recipe->fallback_image }}'); background-size: cover; background-position: center;">
         <div class="container recipe-hero-content">
             <h1 class="recipe-title">{{ $recipe->title }}</h1>
             <div class="recipe-meta">
