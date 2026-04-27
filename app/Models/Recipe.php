@@ -32,26 +32,76 @@ class Recipe extends Model
        $categoryName = $this->category ? strtolower($this->category->name) : '';
        
        $map = [
-           'italian' => 'https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600&q=80',
-           'asian' => 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80',
-           'mexican' => 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80',
-           'middle eastern' => 'https://images.unsplash.com/photo-1596450514735-a50d2105151b?w=600&q=80',
-           'american' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80',
-           'breakfast' => 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80',
-           'dessert' => 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80',
-           'healthy' => 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
-           'african' => 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
-           'moroccan' => 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
-           'european' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
-           'south american' => 'https://images.unsplash.com/photo-1615486171448-43dbaf612953?w=600&q=80',
+           'italian' => [
+               'https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600&q=80',
+               'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80',
+               'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=600&q=80'
+           ],
+           'asian' => [
+               'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80',
+               'https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80',
+               'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80'
+           ],
+           'mexican' => [
+               'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80',
+               'https://images.unsplash.com/photo-1584315565803-6d11b33db7b0?w=600&q=80',
+               'https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=600&q=80'
+           ],
+           'middle eastern' => [
+               'https://images.unsplash.com/photo-1596450514735-a50d2105151b?w=600&q=80',
+               'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
+               'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80'
+           ],
+           'moroccan' => [
+               'https://images.unsplash.com/photo-1596450514735-a50d2105151b?w=600&q=80',
+               'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
+               'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80'
+           ],
+           'african' => [
+               'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
+               'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80'
+           ],
+           'american' => [
+               'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80',
+               'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80'
+           ],
+           'breakfast' => [
+               'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80',
+               'https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=600&q=80',
+               'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80'
+           ],
+           'dessert' => [
+               'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80',
+               'https://images.unsplash.com/photo-1563805042-7684c8a9e9ce?w=600&q=80',
+               'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=600&q=80'
+           ],
+           'healthy' => [
+               'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
+               'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80'
+           ]
        ];
 
-       foreach ($map as $key => $url) {
+       foreach ($map as $key => $urls) {
            if (str_contains($categoryName, $key)) {
-               return $url;
+               $index = $this->id ? ($this->id % count($urls)) : 0;
+               return $urls[$index];
            }
        }
 
-       return 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80'; // Generic delicious food
+       $generics = [
+           'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
+           'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80',
+           'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80',
+           'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80',
+           'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80',
+           'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80',
+           'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80',
+           'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80',
+           'https://images.unsplash.com/photo-1484723091791-c0e7e147c301?w=600&q=80',
+           'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80'
+       ];
+
+       $index = $this->id ? ($this->id % count($generics)) : 0;
+       return $generics[$index];
    }
 }
