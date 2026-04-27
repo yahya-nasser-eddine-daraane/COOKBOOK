@@ -94,7 +94,6 @@ class Recipe extends Model
 
        $generics = [
            'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
-           'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80',
            'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80',
            'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80',
            'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80',
