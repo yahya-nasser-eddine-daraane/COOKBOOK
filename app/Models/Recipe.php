@@ -48,17 +48,14 @@ class Recipe extends Model
            ],
            'mexican' => [
                'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80',
-               'https://images.unsplash.com/photo-1584315565803-6d11b33db7b0?w=600&q=80',
                'https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=600&q=80',
                'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&q=80'
            ],
            'middle eastern' => [
-               'https://images.unsplash.com/photo-1596450514735-a50d2105151b?w=600&q=80',
                'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
                'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80'
            ],
            'moroccan' => [
-               'https://images.unsplash.com/photo-1596450514735-a50d2105151b?w=600&q=80',
                'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=600&q=80',
                'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80'
            ],
@@ -69,21 +66,16 @@ class Recipe extends Model
            'american' => [
                'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80',
                'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80',
-               'https://images.unsplash.com/photo-1476718406336-fa5a96fd726d?w=600&q=80',
                'https://images.unsplash.com/photo-1460306855393-0410f61241c7?w=600&q=80'
            ],
            'breakfast' => [
                'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80',
                'https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=600&q=80',
-               'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80',
-               'https://images.unsplash.com/photo-1476224203427-d4faea43c7b6?w=600&q=80',
-               'https://images.unsplash.com/photo-1484723091791-c0e7e147c301?w=600&q=80'
+               'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80'
            ],
            'dessert' => [
                'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80',
-               'https://images.unsplash.com/photo-1563805042-7684c8a9e9ce?w=600&q=80',
                'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=600&q=80',
-               'https://images.unsplash.com/photo-1509365465994-3e50711903ed?w=600&q=80',
                'https://images.unsplash.com/photo-1514517521153-1be72277b32f?w=600&q=80'
            ],
            'healthy' => [
@@ -109,7 +101,6 @@ class Recipe extends Model
            'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80',
            'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80',
            'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80',
-           'https://images.unsplash.com/photo-1484723091791-c0e7e147c301?w=600&q=80',
            'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80',
            'https://images.unsplash.com/photo-1496116218417-1842eb619f70?w=600&q=80',
            'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=600&q=80',
