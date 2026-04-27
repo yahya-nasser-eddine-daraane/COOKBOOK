@@ -1,10 +1,13 @@
 <?php
 
+// Set the base path
+$basePath = __DIR__ . '/..';
+
 // Register the Composer autoloader...
-require __DIR__ . '/../vendor/autoload.php';
+require $basePath . '/vendor/autoload.php';
 
 // Bootstrap Laravel and handle the request...
-$app = require_once __DIR__ . '/../bootstrap/app.php';
+$app = require_once $basePath . '/bootstrap/app.php';
 
 use Illuminate\Http\Request;
 

@@ -22,7 +22,7 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_BASE_PATH": "/var/task/user",
         "LOG_CHANNEL": "stderr",
         "FILESYSTEM_DISK": "public",
         "VIEW_COMPILED_PATH": "/tmp",
