@@ -72,6 +72,20 @@
 
     <!-- Hero Section -->
     <header class="recipe-hero" id="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : $recipe->fallback_image }}'); background-size: cover; background-position: center;">
+        <script>
+            // CSS background-image doesn't have an onerror fallback.
+            // This tiny script tests the image and swaps the background if it fails to load.
+            (function() {
+                var heroUrl = "{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : '' }}";
+                if (heroUrl) {
+                    var img = new Image();
+                    img.onerror = function() {
+                        document.getElementById('recipe-hero').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->fallback_image }}')";
+                    };
+                    img.src = heroUrl;
+                }
+            })();
+        </script>
         <div class="container recipe-hero-content">
             <h1 class="recipe-title">{{ $recipe->title }}</h1>
             <div class="recipe-meta">
