@@ -71,7 +71,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="recipe-hero" id="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : 'https://loremflickr.com/1200/600/food,recipe,'.urlencode($recipe->title) }}'); background-size: cover; background-position: center;">
+    <header class="recipe-hero" id="recipe-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : 'https://placehold.co/1200x600/FFF3E0/E65100?text=Recipe' }}'); background-size: cover; background-position: center;">
         <div class="container recipe-hero-content">
             <h1 class="recipe-title">{{ $recipe->title }}</h1>
             <div class="recipe-meta">
@@ -118,7 +118,7 @@
                 <div class="ingredient-card">
                     <div class="ingredient-img-container">
                         <img src="{{ $ingredient->image_path ? (Str::startsWith($ingredient->image_path, ['http://', 'https://']) ? $ingredient->image_path : asset($ingredient->image_path)) : 'https://img.spoonacular.com/ingredients_100x100/'.urlencode(strtolower(str_replace(' ', '-', $ingredient->name))).'.jpg' }}" 
-                             onerror="this.onerror=null; this.src='https://loremflickr.com/300/300/food,{{ urlencode($ingredient->name) }}'"
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/E8F5E9/2E7D32?text={{ urlencode(substr($ingredient->name, 0, 1)) }}'"
                              alt="{{ $ingredient->name }}" class="ingredient-img">
                     </div>
                     <div class="ingredient-info">

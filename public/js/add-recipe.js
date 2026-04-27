@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (ing.image) {
                         linkInput.value = ing.image;
                     } else {
-                        linkInput.value = `https://loremflickr.com/300/300/food,${ing.name.replace(/ /g, ',')}`;
+                        linkInput.value = `https://placehold.co/100x100/E8F5E9/2E7D32?text=${ing.name.charAt(0)}`;
                     }
                     
                     ingredientsList.appendChild(row);

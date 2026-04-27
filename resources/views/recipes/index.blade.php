@@ -76,8 +76,8 @@
         <div class="grid container" id="recipes-grid">
             @foreach($recipes as $recipe)
                 <div class="recipe-card group">
-                    <img src="{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : 'https://loremflickr.com/600/400/food,recipe,'.urlencode($recipe->title) }}" 
-                         onerror="this.onerror=null; this.src='https://loremflickr.com/600/400/food,recipe,{{ urlencode($recipe->title) }}'"
+                    <img src="{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : 'https://placehold.co/600x400/FFF3E0/E65100?text=Recipe' }}" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFF3E0/E65100?text=Recipe'"
                          alt="{{ $recipe->title }}" class="recipe-img">
                     <div class="recipe-content">
                         <h3 class="card-title">{{ $recipe->title }}</h3>
