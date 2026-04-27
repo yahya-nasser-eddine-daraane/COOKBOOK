@@ -101,24 +101,7 @@ class Recipe extends Model
            'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80',
            'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80',
            'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80',
-           'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80',
-           'https://images.unsplash.com/photo-1496116218417-1842eb619f70?w=600&q=80',
-           'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=600&q=80',
-           'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?w=600&q=80',
-           'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&q=80',
-           'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80',
-           'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=600&q=80',
-           'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=80',
-           'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=600&q=80',
-           'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80',
-           'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=600&q=80',
-           'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80',
-           'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=600&q=80',
-           'https://images.unsplash.com/photo-1513442542250-854d436a73f2?w=600&q=80',
-           'https://images.unsplash.com/photo-1470549813517-2fa741d25c92?w=600&q=80',
-           'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=600&q=80',
-           'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80',
-           'https://images.unsplash.com/photo-1504113888839-1c8eb5023365?w=600&q=80'
+           'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80'
        ];
 
        $index = $this->id ? ($this->id % count($generics)) : 0;
