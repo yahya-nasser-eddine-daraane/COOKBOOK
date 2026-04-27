@@ -35,17 +35,22 @@ class Recipe extends Model
            'italian' => [
                'https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=600&q=80',
                'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80',
-               'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=600&q=80'
+               'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=600&q=80',
+               'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80',
+               'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80'
            ],
            'asian' => [
                'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80',
                'https://images.unsplash.com/photo-1553621042-f6e147245754?w=600&q=80',
-               'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80'
+               'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80',
+               'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80',
+               'https://images.unsplash.com/photo-1552611052-33e04de081de?w=600&q=80'
            ],
            'mexican' => [
                'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80',
                'https://images.unsplash.com/photo-1584315565803-6d11b33db7b0?w=600&q=80',
-               'https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=600&q=80'
+               'https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=600&q=80',
+               'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&q=80'
            ],
            'middle eastern' => [
                'https://images.unsplash.com/photo-1596450514735-a50d2105151b?w=600&q=80',
@@ -63,21 +68,28 @@ class Recipe extends Model
            ],
            'american' => [
                'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80',
-               'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80'
+               'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&q=80',
+               'https://images.unsplash.com/photo-1476718406336-fa5a96fd726d?w=600&q=80',
+               'https://images.unsplash.com/photo-1460306855393-0410f61241c7?w=600&q=80'
            ],
            'breakfast' => [
                'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80',
                'https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=600&q=80',
-               'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80'
+               'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80',
+               'https://images.unsplash.com/photo-1476224203427-d4faea43c7b6?w=600&q=80',
+               'https://images.unsplash.com/photo-1484723091791-c0e7e147c301?w=600&q=80'
            ],
            'dessert' => [
                'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80',
                'https://images.unsplash.com/photo-1563805042-7684c8a9e9ce?w=600&q=80',
-               'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=600&q=80'
+               'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=600&q=80',
+               'https://images.unsplash.com/photo-1509365465994-3e50711903ed?w=600&q=80',
+               'https://images.unsplash.com/photo-1514517521153-1be72277b32f?w=600&q=80'
            ],
            'healthy' => [
                'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
-               'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80'
+               'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80',
+               'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80'
            ]
        ];
 
@@ -98,7 +110,24 @@ class Recipe extends Model
            'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80',
            'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80',
            'https://images.unsplash.com/photo-1484723091791-c0e7e147c301?w=600&q=80',
-           'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80'
+           'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=600&q=80',
+           'https://images.unsplash.com/photo-1496116218417-1842eb619f70?w=600&q=80',
+           'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=600&q=80',
+           'https://images.unsplash.com/photo-1481070555726-e2fe8357725c?w=600&q=80',
+           'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&q=80',
+           'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80',
+           'https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=600&q=80',
+           'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=80',
+           'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=600&q=80',
+           'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80',
+           'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=600&q=80',
+           'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80',
+           'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=600&q=80',
+           'https://images.unsplash.com/photo-1513442542250-854d436a73f2?w=600&q=80',
+           'https://images.unsplash.com/photo-1470549813517-2fa741d25c92?w=600&q=80',
+           'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=600&q=80',
+           'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80',
+           'https://images.unsplash.com/photo-1504113888839-1c8eb5023365?w=600&q=80'
        ];
 
        $index = $this->id ? ($this->id % count($generics)) : 0;
