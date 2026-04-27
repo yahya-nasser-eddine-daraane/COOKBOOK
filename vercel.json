@@ -24,6 +24,8 @@
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "LOG_CHANNEL": "stderr",
-        "FILESYSTEM_DISK": "public"
+        "FILESYSTEM_DISK": "public",
+        "VIEW_COMPILED_PATH": "/tmp",
+        "SESSION_DRIVER": "cookie"
     }
 }
