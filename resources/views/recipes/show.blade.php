@@ -77,12 +77,30 @@
             // This tiny script tests the image and swaps the background if it fails to load.
             (function() {
                 var heroUrl = "{{ $recipe->image_path ? (Str::startsWith($recipe->image_path, ['http://', 'https://']) ? $recipe->image_path : asset($recipe->image_path)) : '' }}";
+                var fallbackUrl = "{{ $recipe->fallback_image }}";
+                var ultimateFallback = "https://placehold.co/1200x600/FFF3E0/E65100?text=Recipe";
+                
                 if (heroUrl) {
                     var img = new Image();
                     img.onerror = function() {
-                        document.getElementById('recipe-hero').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ $recipe->fallback_image }}')";
+                        // The primary image failed. Try the category fallback.
+                        document.getElementById('recipe-hero').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('" + fallbackUrl + "')";
+                        
+                        // Also test if the category fallback fails
+                        var fbImg = new Image();
+                        fbImg.onerror = function() {
+                            document.getElementById('recipe-hero').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('" + ultimateFallback + "')";
+                        };
+                        fbImg.src = fallbackUrl;
                     };
                     img.src = heroUrl;
+                } else {
+                    // No hero url provided, we are currently using fallbackUrl. Test if it fails.
+                    var fbImg = new Image();
+                    fbImg.onerror = function() {
+                        document.getElementById('recipe-hero').style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('" + ultimateFallback + "')";
+                    };
+                    fbImg.src = fallbackUrl;
                 }
             })();
         </script>
