@@ -1,21 +1,25 @@
 <?php
 
-// Show errors for debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$basePath = __DIR__ . '/..';
+$basePath = realpath(__DIR__ . '/..');
 
 if (!file_exists($basePath . '/vendor/autoload.php')) {
-    die("CRITICAL ERROR: vendor/autoload.php is missing. Vercel did not install dependencies correctly.");
+    die("CRITICAL ERROR: vendor/autoload.php is missing. Vercel did not install dependencies.");
 }
 
-// Register the Composer autoloader...
 require $basePath . '/vendor/autoload.php';
 
-// Bootstrap Laravel and handle the request...
 $app = require_once $basePath . '/bootstrap/app.php';
+
+// Fix Vercel path caching issues dynamically
+$app->setBasePath($basePath);
+
+// Vercel Serverless is read-only except for /tmp
+// We must redirect storage and compiled views to /tmp
+$app->useStoragePath('/tmp/storage');
 
 use Illuminate\Http\Request;
 
