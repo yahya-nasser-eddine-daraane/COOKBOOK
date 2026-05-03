@@ -38,6 +38,7 @@
     ],
     "env": {
         "APP_ENV": "production",
+        "APP_URL": "https://cookbook-ebon-six.vercel.app",
         "APP_BASE_PATH": "/var/task/user",
         "LOG_CHANNEL": "stderr",
         "FILESYSTEM_DISK": "public",
