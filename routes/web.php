@@ -11,8 +11,8 @@ Route::post('/chef-ai/generate', [AiController::class, 'generateRecipe']);
 Route::get('/chef-ai/surprise', [AiController::class, 'surpriseRecipe']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::post('/api/login', [ApiAuthController::class, 'login']);
-Route::post('/api/register', [ApiAuthController::class, 'register']);
+Route::post('/auth-v1/login', [ApiAuthController::class, 'login']);
+Route::post('/auth-v1/register', [ApiAuthController::class, 'register']);
 
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/register', 'auth.signin')->name('register');

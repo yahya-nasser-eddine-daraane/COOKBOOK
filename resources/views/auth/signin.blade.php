@@ -37,7 +37,7 @@
         window.ROUTES = {
             home: "{{ route('home') }}",
             login: "{{ route('login') }}",
-            apiRegister: "{{ url('/api/register') }}"
+            apiRegister: "{{ url('/auth-v1/register') }}"
         };
     </script>
     <script src="{{ asset('js/signIn.js') }}"></script>
