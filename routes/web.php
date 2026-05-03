@@ -7,8 +7,8 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AiController;
 
-Route::post('/api/ai/generate', [AiController::class, 'generateRecipe']);
-Route::get('/api/ai/surprise', [AiController::class, 'surpriseRecipe']);
+Route::post('/chef-ai/generate', [AiController::class, 'generateRecipe']);
+Route::get('/chef-ai/surprise', [AiController::class, 'surpriseRecipe']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('/api/login', [ApiAuthController::class, 'login']);

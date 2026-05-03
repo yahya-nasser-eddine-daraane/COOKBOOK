@@ -18,7 +18,7 @@ class AiController extends Controller
 
     public function __construct()
     {
-        $this->apiKey = env('GROQ_API_KEY');
+        $this->apiKey = config('services.groq.key');
     }
 
     public function generateRecipe(Request $request)

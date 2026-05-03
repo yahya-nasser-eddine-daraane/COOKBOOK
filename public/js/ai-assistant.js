@@ -1,7 +1,7 @@
 window.aiAssistant = {
     generateRecipe: async function(title) {
         try {
-            const response = await fetch('/api/ai/generate', {
+            const response = await fetch('/chef-ai/generate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ window.aiAssistant = {
 
     getSurpriseRecipe: async function() {
         try {
-            const response = await fetch('/api/ai/surprise', {
+            const response = await fetch('/chef-ai/surprise', {
                 method: 'GET',
                 headers: { 'Accept': 'application/json' }
             });
