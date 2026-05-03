@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -14,13 +16,7 @@ require $basePath . '/vendor/autoload.php';
 
 $app = require_once $basePath . '/bootstrap/app.php';
 
-// Fix Vercel path caching issues dynamically
-$app->setBasePath($basePath);
-
-// Vercel Serverless is read-only except for /tmp
-// We must redirect storage and compiled views to /tmp
 $app->useStoragePath('/tmp/storage');
-
-use Illuminate\Http\Request;
+$app->useBootstrapPath('/tmp/bootstrap');
 
 $app->handleRequest(Request::capture());
