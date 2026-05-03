@@ -57,7 +57,9 @@ class RecipeController extends Controller
             'quantities' => 'array',
         ]);
 
-        $recipe = new Recipe($request->except(['ingredients', 'quantities', 'image_file']));
+        $data = $request->except(['ingredients', 'quantities', 'image_file']);
+        $data['description'] = $data['description'] ?? '';
+        $recipe = new Recipe($data);
         
         if ($request->hasFile('image_file')) {
             $file = $request->file('image_file');
@@ -132,7 +134,9 @@ class RecipeController extends Controller
             'quantities' => 'array',
         ]);
 
-        $recipe->fill($request->except(['ingredients', 'quantities', 'image_file', 'ingredient_names']));
+        $data = $request->except(['ingredients', 'quantities', 'image_file', 'ingredient_names']);
+        $data['description'] = $data['description'] ?? '';
+        $recipe->fill($data);
 
         if ($request->hasFile('image_file')) {
             $file = $request->file('image_file');
