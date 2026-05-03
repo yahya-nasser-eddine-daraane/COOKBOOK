@@ -79,9 +79,12 @@ class AiController extends Controller
 
     public function surpriseRecipe()
     {
+        $existingTitles = Recipe::latest()->take(20)->pluck('title')->implode(', ');
+
         $prompt = "Generate a TRULY RANDOM, unique, and creative recipe. 
         CRITICAL: Pick a RANDOM cuisine from a wide variety (e.g., Moroccan, French, Japanese, Brazilian, Ethiopian, Italian, Mexican, Greek, Indian, etc.). 
-        DO NOT only pick Asian/Korean. Be diverse!
+        DO NOT pick a cuisine or style that is too similar to these existing recipes: [{$existingTitles}].
+        DO NOT only pick Asian/Korean or Peruvian. Be diverse!
         Pick a random main ingredient (Lamb, Seafood, Chicken, Legumes, exotic vegetables, etc.) and a random cooking style (Slow-cooked, Steamed, Poached, Roasted, etc.).
         Return ONLY a JSON object with this structure:
         {
