@@ -13,7 +13,7 @@ class HomeController extends Controller
         $categories = Category::all();
         
         
-        $featuredTitles = ['Tanjia', 'Royal Couscous', 'Tiramisu', 'Strawberry Cheesecake', 'Green Smoothie Bowl','Paella' ];
+        $featuredTitles = ['Tanjia', 'Ceviche', 'Tiramisu', 'Strawberry Cheesecake', 'Green Smoothie Bowl','Paella' ];
         
         $recipes = Recipe::with('user', 'category')
             ->withCount('viewers')
