@@ -12,8 +12,8 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         
-        // The user wants specific "static" featured recipes like Tanjia to appear first.
-        $featuredTitles = ['Tanjia', 'Royal Couscous', 'Tagine', 'Pastilla', 'Harira', 'Mint Tea'];
+        
+        $featuredTitles = ['Tanjia', 'Royal Couscous', 'Tiramisu', 'Strawberry Cheesecake', 'Green Smoothie Bowl','Paella' ];
         
         $recipes = Recipe::with('user', 'category')
             ->withCount('viewers')
