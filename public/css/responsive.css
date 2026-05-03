@@ -1,0 +1,277 @@
+/* =============================================
+   RESPONSIVE CSS - Mobile & Tablet Support
+   ============================================= */
+
+/* ---- VIEWPORT META FIX (enforced via CSS) ---- */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* ---- TABLET: max-width 992px ---- */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .categories-list {
+        gap: 2rem;
+    }
+
+    .categories-list > * {
+        width: 160px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .recipe-title {
+        font-size: 2.8rem;
+    }
+
+    .ingredients-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+
+    .base-timer {
+        width: 220px;
+        height: 220px;
+    }
+
+    .base-timer__label {
+        width: 220px;
+        height: 220px;
+        font-size: 3rem;
+    }
+}
+
+/* ---- MOBILE: max-width 768px ---- */
+@media (max-width: 768px) {
+
+    /* Hero */
+    .hero {
+        height: 60vh;
+        min-height: 320px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-content {
+        padding: 15px;
+    }
+
+    /* Sections */
+    .categories-section,
+    .recipes-section,
+    .section-container {
+        padding: 2.5rem 15px;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Categories */
+    .categories-list {
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .categories-list > * {
+        width: 130px;
+    }
+
+    .category-card {
+        padding: 1.2rem;
+        border-radius: 20px;
+    }
+
+    .icon-circle {
+        width: 55px;
+        height: 55px;
+    }
+
+    .category-name {
+        font-size: 0.85rem;
+    }
+
+    /* Recipe Grid */
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .recipe-card {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+    }
+
+    /* Recipe Detail Page */
+    .recipe-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .recipe-meta {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .meta-item {
+        padding: 0.4rem 0.9rem;
+    }
+
+    .ingredients-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .ingredient-img-container {
+        height: 90px;
+    }
+
+    .instruction-step {
+        padding-left: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .step-text {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    /* Timer */
+    .base-timer {
+        width: 180px;
+        height: 180px;
+    }
+
+    .base-timer__label {
+        width: 180px;
+        height: 180px;
+        font-size: 2.5rem;
+    }
+
+    .timer-container {
+        padding: 1.5rem;
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    /* Auth */
+    .auth-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 9px 20px;
+        font-size: 0.95rem;
+    }
+
+    .btn-warning {
+        font-size: 1rem;
+        padding: 10px 24px;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+/* ---- SMALL MOBILE: max-width 480px ---- */
+@media (max-width: 480px) {
+
+    .hero {
+        height: 55vh;
+        min-height: 280px;
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /* Even smaller cards on tiny phones */
+    .categories-list > * {
+        width: 110px;
+    }
+
+    .icon-circle {
+        width: 48px;
+        height: 48px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .recipe-title {
+        font-size: 1.6rem;
+    }
+
+    .recipe-meta {
+        gap: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .ingredients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .base-timer {
+        width: 150px;
+        height: 150px;
+    }
+
+    .base-timer__label {
+        width: 150px;
+        height: 150px;
+        font-size: 2rem;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+}
