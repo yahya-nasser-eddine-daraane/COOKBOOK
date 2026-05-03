@@ -79,7 +79,10 @@ class AiController extends Controller
 
     public function surpriseRecipe()
     {
-        $prompt = "Generate a TRULY RANDOM and creative recipe. Pick a random cuisine (Italian, Asian, African, Mexican, etc.), a random main ingredient (Fish, Tofu, Lamb, exotic fruits, etc.), and a random cooking style. 
+        $prompt = "Generate a TRULY RANDOM, unique, and creative recipe. 
+        CRITICAL: Pick a RANDOM cuisine from a wide variety (e.g., Moroccan, French, Japanese, Brazilian, Ethiopian, Italian, Mexican, Greek, Indian, etc.). 
+        DO NOT only pick Asian/Korean. Be diverse!
+        Pick a random main ingredient (Lamb, Seafood, Chicken, Legumes, exotic vegetables, etc.) and a random cooking style (Slow-cooked, Steamed, Poached, Roasted, etc.).
         Return ONLY a JSON object with this structure:
         {
             \"id\": \"surprise_rand\",
@@ -98,7 +101,7 @@ class AiController extends Controller
                 ->post($this->baseUrl, [
                     'model' => $this->model,
                     'messages' => [
-                        ['role' => 'system', 'content' => 'You are a helpful AI chef. Always return strict JSON.'],
+                        ['role' => 'system', 'content' => 'You are a creative, world-class AI chef. You love exploring diverse global cuisines and unique ingredient combinations.'],
                         ['role' => 'user', 'content' => $prompt]
                     ],
                     'response_format' => ['type' => 'json_object'],
