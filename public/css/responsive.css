@@ -189,8 +189,19 @@ html {
 
     /* Auth */
     .auth-container {
-        padding: 1.5rem;
-        margin: 1rem;
+        padding: 2rem 1.5rem;
+        margin: auto 15px;
+        width: calc(100% - 30px);
+        max-width: 100%;
+    }
+
+    .auth-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .auth-container .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
     }
 
     /* Buttons */
@@ -273,5 +284,18 @@ html {
 
     .logo-text {
         font-size: 1.2rem;
+    }
+
+    .auth-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .auth-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .auth-container .form-group input {
+        font-size: 0.9rem;
+        padding: 10px 12px;
     }
 }
