@@ -19,11 +19,14 @@ main,
 }
 
 .navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.75rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .navbar .nav-container {
@@ -32,8 +35,8 @@ main,
     align-items: center;
     max-width: 100%;
     margin: 0;
-    padding: 0 1rem;
-    gap: 2rem;
+    padding: 0 1.25rem;
+    gap: 1rem;
 }
 
 .nav-main {
@@ -119,20 +122,30 @@ main,
     border: none;
     font-size: 1.5rem;
     color: var(--dark);
+    padding: 0.25rem;
+    flex-shrink: 0;
+}
+
+/* Mobile auth links inside the slide-out menu */
+.nav-auth-mobile {
+    display: none;
 }
 
 @media (max-width: 992px) {
     .nav-main {
         position: fixed;
-        top: 70px;
+        top: 62px; /* Match actual header height */
         left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
+        width: min(320px, 100%);
+        height: calc(100vh - 62px);
         background: white;
         flex-direction: column;
-        padding: 2rem;
-        transition: 0.3s ease;
+        align-items: flex-start;
+        padding: 2rem 1.5rem;
+        transition: left 0.3s ease;
         z-index: 99;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+        overflow-y: auto;
     }
 
     .nav-main.active {
@@ -141,17 +154,71 @@ main,
 
     .nav-links {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
+        gap: 0.25rem;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.75rem 0.5rem;
+        font-size: 1.1rem;
+        border-bottom: 1px solid var(--gray);
+        width: 100%;
+    }
+
+    .nav-link.active::after {
+        display: none; /* Remove underline indicator on mobile */
     }
 
     .search-container {
         max-width: 100%;
         width: 100%;
+        margin-top: 1rem;
     }
 
     .hamburger {
         display: block;
+    }
+
+    /* Hide desktop auth buttons on mobile */
+    .auth-links {
+        display: none;
+    }
+
+    /* Show mobile auth section inside slide-out menu */
+    .nav-auth-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--gray);
+    }
+
+    .nav-auth-mobile .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-auth-mobile .user-menu {
+        width: 100%;
+    }
+
+    .nav-auth-mobile .user-dropdown {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+        border: 1px solid var(--gray);
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        width: 100%;
     }
 }
 

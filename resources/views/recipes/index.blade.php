@@ -47,6 +47,18 @@
                         <input type="text" name="search" class="search-input" placeholder="Rechercher une recette..." value="{{ request('search') }}">
                     </form>
                 </div>
+
+                <div class="nav-auth-mobile">
+                    @auth
+                        <span style="font-weight:600; color: var(--dark);"><i class="fas fa-user-circle"></i> {{ Auth::user()->name }}</span>
+                        <a href="{{ route('recipes.my') }}" class="btn btn-ghost" style="text-align:center;"><i class="fas fa-utensils"></i> Mes Recettes</a>
+                        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+                        <form id="logout-form-mobile" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-ghost">Se connecter</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">S'inscrire</a>
+                    @endauth
+                </div>
             </div>
 
             <div class="auth-links">
