@@ -23,8 +23,7 @@ main,
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 0.75rem 0;
-    position: sticky;
-    top: 0;
+    /* Removed position:sticky — header stays at the top and does NOT follow the user */
     z-index: 100;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
@@ -115,6 +114,21 @@ main,
     color: #888;
 }
 
+/* Mobile user indicator — visible in top bar next to hamburger */
+.mobile-user-indicator {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100px;
+    text-overflow: ellipsis;
+}
+
 .hamburger {
     display: none;
     cursor: pointer;
@@ -131,20 +145,80 @@ main,
     display: none;
 }
 
+/* Slide-out header (close button + search at top) */
+.nav-panel-header {
+    display: none;
+}
+
 @media (max-width: 992px) {
+    /* ── Mobile top bar: LOGO | username | ☰ all in ONE row ── */
+    .mobile-user-indicator {
+        display: flex;
+    }
+
+    .nav-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--gray);
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+    }
+
+    .nav-panel-header .close-btn {
+        background: none;
+        border: 1px solid var(--gray);
+        border-radius: 8px;
+        font-size: 1.1rem;
+        color: var(--dark);
+        cursor: pointer;
+        padding: 0.4rem 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-weight: 600;
+    }
+
+    .nav-panel-header .panel-search {
+        flex: 1;
+        margin-left: 0.75rem;
+        position: relative;
+    }
+
+    .nav-panel-header .panel-search input {
+        width: 100%;
+        padding: 0.5rem 1rem 0.5rem 2.2rem;
+        border-radius: 25px;
+        border: 1px solid rgba(0,0,0,0.12);
+        background: #f8f9fa;
+        font-family: inherit;
+        font-size: 0.95rem;
+    }
+
+    .nav-panel-header .panel-search i {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+        font-size: 0.9rem;
+    }
+
     .nav-main {
         position: fixed;
-        top: 62px; /* Match actual header height */
+        top: 0;                /* Starts from the very top of the screen */
         left: -100%;
-        width: min(320px, 100%);
-        height: calc(100vh - 62px);
+        width: min(320px, 90%);
+        height: 100vh;
         background: white;
         flex-direction: column;
         align-items: flex-start;
-        padding: 2rem 1.5rem;
+        padding: 1.5rem 1.5rem 2rem;
         transition: left 0.3s ease;
-        z-index: 99;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+        z-index: 999;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
         overflow-y: auto;
     }
 
@@ -152,11 +226,23 @@ main,
         left: 0;
     }
 
+    /* Dimmed overlay when menu is open */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 998;
+    }
+    .nav-overlay.active {
+        display: block;
+    }
+
     .nav-links {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
-        gap: 0.25rem;
+        gap: 0;
     }
 
     .nav-links li {
@@ -165,27 +251,27 @@ main,
 
     .nav-link {
         display: block;
-        padding: 0.75rem 0.5rem;
-        font-size: 1.1rem;
+        padding: 0.85rem 0.5rem;
+        font-size: 1.05rem;
         border-bottom: 1px solid var(--gray);
         width: 100%;
     }
 
     .nav-link.active::after {
-        display: none; /* Remove underline indicator on mobile */
+        display: none;
     }
 
-    .search-container {
-        max-width: 100%;
-        width: 100%;
-        margin-top: 1rem;
+    /* Hide the desktop search bar inside nav-main on mobile
+       (we replaced it with the panel header search) */
+    .nav-main > .search-container {
+        display: none;
     }
 
     .hamburger {
         display: block;
     }
 
-    /* Hide desktop auth buttons on mobile */
+    /* Hide desktop auth buttons from header bar */
     .auth-links {
         display: none;
     }
@@ -199,26 +285,12 @@ main,
         margin-top: 1.5rem;
         padding-top: 1.5rem;
         border-top: 2px solid var(--gray);
+        flex-shrink: 0;
     }
 
     .nav-auth-mobile .btn {
         width: 100%;
         text-align: center;
-    }
-
-    .nav-auth-mobile .user-menu {
-        width: 100%;
-    }
-
-    .nav-auth-mobile .user-dropdown {
-        position: static;
-        display: flex;
-        flex-direction: column;
-        box-shadow: none;
-        border: 1px solid var(--gray);
-        border-radius: 8px;
-        margin-top: 0.5rem;
-        width: 100%;
     }
 }
 

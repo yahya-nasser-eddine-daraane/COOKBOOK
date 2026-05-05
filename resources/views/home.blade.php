@@ -18,16 +18,39 @@
 
 <body>
     <nav class="navbar">
+        {{-- Dark overlay behind slide-out menu --}}
+        <div class="nav-overlay" id="nav-overlay"></div>
+
         <div class="container nav-container">
             <a href="{{ route('home') }}" class="logo-link">
                 <span class="logo-text">COOKBOOK</span>
             </a>
 
-            <button class="hamburger" id="nav-toggle">
+            {{-- Mobile: compact user indicator shown next to hamburger --}}
+            @auth
+                <span class="mobile-user-indicator">
+                    <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+                </span>
+            @endauth
+
+            <button class="hamburger" id="nav-toggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
 
             <div class="nav-main" id="nav-menu">
+                {{-- Panel header: close button + search bar at the TOP of the slide-out --}}
+                <div class="nav-panel-header">
+                    <button class="close-btn" id="nav-close">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+                    <div class="panel-search">
+                        <i class="fas fa-search"></i>
+                        <form action="{{ route('recipes.index') }}" method="GET">
+                            <input type="text" name="search" placeholder="Rechercher..." value="{{ request('search') }}">
+                        </form>
+                    </div>
+                </div>
+
                 <ul class="nav-links">
                     <li><a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a></li>
                     @auth
@@ -38,6 +61,7 @@
                     <li><a href="{{ route('recipes.create') }}" class="nav-link {{ request()->routeIs('recipes.create') ? 'active' : '' }}">Publier</a></li>
                 </ul>
 
+                {{-- Desktop search bar (hidden on mobile, replaced by panel header) --}}
                 <div class="search-container">
                     <form action="{{ route('recipes.index') }}" method="GET">
                         <i class="fas fa-search search-icon"></i>
@@ -45,11 +69,11 @@
                     </form>
                 </div>
 
-                {{-- Mobile-only auth actions inside the slide-out menu --}}
+                {{-- Mobile-only auth actions --}}
                 <div class="nav-auth-mobile">
                     @auth
                         <span style="font-weight:600; color: var(--dark);"><i class="fas fa-user-circle"></i> {{ Auth::user()->name }}</span>
-                        <a href="{{ route('recipes.my') }}" class="btn btn-ghost" style="text-align:center;"><i class="fas fa-utensils"></i> Mes Recettes</a>
+                        <a href="{{ route('recipes.my') }}" class="btn btn-ghost"><i class="fas fa-utensils"></i> Mes Recettes</a>
                         <a href="#" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
                         <form id="logout-form-mobile" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
                     @else
@@ -67,13 +91,11 @@
                         </button>
                         <div class="user-dropdown">
                             <a href="{{ route('recipes.my') }}"><i class="fas fa-utensils"></i> Mes Recettes</a>
-                            <a href="#" id="logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Se déconnecter
                             </a>
                         </div>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-ghost">Se connecter</a>
@@ -155,12 +177,25 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggle = document.getElementById('nav-toggle');
+            const closeBtn = document.getElementById('nav-close');
             const menu = document.getElementById('nav-menu');
-            if (toggle && menu) {
-                toggle.addEventListener('click', () => {
-                    menu.classList.toggle('active');
-                });
+            const overlay = document.getElementById('nav-overlay');
+
+            function openMenu() {
+                menu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
+
+            function closeMenu() {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (toggle) toggle.addEventListener('click', openMenu);
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+            if (overlay) overlay.addEventListener('click', closeMenu);
         });
     </script>
     <script>
